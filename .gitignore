@@ -1,0 +1,48 @@
+# --- Python build/cache ---
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.so
+*.egg
+*.egg-info/
+dist/
+build/
+pip-wheel-metadata/
+
+# --- Virtual envs ---
+.venv/
+venv/
+env/
+
+# --- Tools & caches ---
+.mypy_cache/
+.pytest_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# --- Jupyter (if you experiment) ---
+.ipynb_checkpoints/
+
+# --- App secrets & local config ---
+.env
+*.env
+.env.*
+
+# --- Flask app runtime folders (generated) ---
+uploads/
+outputs/
+instance/
+*.db
+
+# --- Editors/OS ---
+.vscode/
+.idea/
+.vs/
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# --- Front-end (if you add it later) ---
+node_modules/

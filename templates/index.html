@@ -1,0 +1,15 @@
+<!doctype html>
+<html>
+<head><meta charset="utf-8"><title>CSV Analyzer</title></head>
+<body>
+  <h1>CSV Analyzer</h1>
+  {% with msgs = get_flashed_messages() %}
+    {% if msgs %}<p><strong>{{ msgs[0] }}</strong></p>{% endif %}
+  {% endwith %}
+
+  <form action="/analyze-csv" method="post" enctype="multipart/form-data">
+    <input type="file" name="file" accept=".csv" required>
+    <button>Analyze</button>
+  </form>
+</body>
+</html>

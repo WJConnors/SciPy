@@ -1,0 +1,20 @@
+table.grid {
+    border-collapse: collapse;
+    width: 100%;
+    table-layout: fixed;
+    font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+    font-size: 14px;
+}
+.grid th, .grid td {
+    border: 1px solid #ccc;
+    padding: 6px 8px;
+    vertical-align: top;
+    word-wrap: break-word;
+}
+.grid thead th {
+    background: #f6f6f6;
+    position: sticky; top: 0; z-index: 1; /* header sticks on scroll */
+}
+.grid tbody tr:nth-child(even) { background: #fafafa; }
+.grid caption { text-align: left; font-weight: 600; margin: 0 0 6px; }
+h1, h2 { font-family: inherit; }

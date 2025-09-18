@@ -1,0 +1,11 @@
+id,name,age,income,department,is_member,score,city
+1,Alice,29,38000,Sales,TRUE,82.5,Leeds
+2,Bob,41,52000,Engineering,FALSE,90.2,Newcastle
+3,Charlie,35,,Engineering,TRUE,76.1,Manchester
+4,Dina,27,31000,Support,TRUE,,Leeds
+5,Ed,50,68000,Sales,FALSE,88.9,London
+6,Farah,33,45000,Marketing,TRUE,71.0,Leeds
+7,Gabriel,,39500,Support,FALSE,64.3,Liverpool
+8,Hannah,38,57000,Engineering,TRUE,92.0,Newcastle
+9,Ian,44,61000,Marketing,FALSE,79.7,London
+10,Jade,31,43000,Sales,TRUE,85.4,Manchester

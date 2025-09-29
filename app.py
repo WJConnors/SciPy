@@ -3,6 +3,7 @@ from pathlib import Path
 from flask import Flask, render_template, request, redirect, url_for, flash, send_file
 import pandas as pd
 import numpy as np
+import timeit, random
 
 import matplotlib
 matplotlib.use("Agg")  # headless backend for saving plots
@@ -92,9 +93,49 @@ def analyze_csv():
 def get_output(name):
 	return send_file(Path(app.config["OUTPUT_FOLDER"]) / name, mimetype="image/png")
 
+def python_list(xs):
+      for i in range(len(xs)):
+           xs[i] += 5
+
+def np_array(array):
+      np.add(array, 5, out=array)
+
+def run_experiment(n):
+     
+     xs = [random.randrange(0, 256) for _ in range(n)]
+     arr = np.array(xs, dtype=np.int64)
+     ser = pd.Series(xs, dtype="int64")
+     list_times = timeit.repeat(
+          stmt="python_list(xs)",
+          repeat=10,
+          number=10,
+          globals={"python_list": python_list, "xs": xs}
+    )
+
+     np_times = timeit.repeat(
+         stmt="np_array(arr)",
+         repeat=10,
+         number=10,
+         globals={"np_array": np_array, "arr": arr}
+     )
+
+     return [list_times, np_times]
+
 @app.get("/experiment")
 def experiment():
-	return render_template("experiment.html")
+      
+    list_times, np_times = run_experiment(10_000)
+
+    # timeit.repeat returns total seconds for `number` loops (here number=10)
+    def mean_ms(times):
+        return (sum(times) / len(times) / 10) * 1000.0  # per-loop ms
+
+    rows = [
+        ("Python list",  mean_ms(list_times)),
+        ("NumPy array",  mean_ms(np_times)),
+    ]
+
+    return render_template("experiment.html", rows=rows)
 
 if __name__ == "__main__":
 	app.run(debug=True)

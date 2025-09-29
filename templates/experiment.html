@@ -7,6 +7,26 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='csv_result.css') }}">
 </head>
 <body>
-    
+  <h1>Experiment: Add 5 to Each Item</h1>
+  <p>Values are mean <em>per-loop</em> times across repeats (ms).</p>
+
+  <table class="dataframe grid">
+    <thead>
+      <tr>
+        <th>Method</th>
+        <th>Mean time (ms / loop)</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for name, ms in rows %}
+      <tr>
+        <td>{{ name }}</td>
+        <td>{{ "%.3f"|format(ms) }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+  <p><a href="{{ url_for('index') }}">← Back</a></p>
 </body>
 </html>

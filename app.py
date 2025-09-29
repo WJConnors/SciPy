@@ -37,10 +37,6 @@ def analyze_csv():
     # Read CSV into a DataFrame
     df = pd.read_csv(f)
 
-    # Parse dates if present (example: joined_date)
-    if "joined_date" in df.columns:
-        df["joined_date"] = pd.to_datetime(df["joined_date"], errors="coerce")
-
     # --- Separate summaries ---
     num_summary = df.describe(include=[np.number]).round(3)
     cat_summary = df.describe(exclude=[np.number])
@@ -92,12 +88,13 @@ def analyze_csv():
         hist_png=hist_png,
     )
 
-
-
 @app.get("/outputs/<name>")
 def get_output(name):
 	return send_file(Path(app.config["OUTPUT_FOLDER"]) / name, mimetype="image/png")
 
+@app.get("/experiment")
+def experiment():
+	return render_template("experiment.html")
 
 if __name__ == "__main__":
 	app.run(debug=True)
